@@ -32,7 +32,7 @@ class mariadb (
   $mirror         = $mariadb::params::default_mirror,) inherits mariadb::params {
   if $manage_repo == true {
     # Set up repositories
-    class { $mariadb::params::repo_class: stage => setup, }
+    class { $mariadb::params::repo_class: stage => setup, mirror => $mirror}
   }
 
   # Packages
