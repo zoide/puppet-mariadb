@@ -74,6 +74,7 @@ class mariadb::params {
       $repo_class             = 'mariadb::repo::debian'
       $wsrep_provider         = '/usr/lib/galera/libgalera_smm.so'
       $default_mirror = 'http://mirror.aarnet.edu.au/pub/MariaDB'
+      $repo_version = '10.1'
     }
 
     default: {

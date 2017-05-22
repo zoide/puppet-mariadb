@@ -31,7 +31,10 @@ class mariadb::backup (
   $backupdir,
   $backupdays = 30,
   $backupcompress = true,
-  $ensure = 'present'
+  $onefile = true,
+  $ensure = 'present',
+  $owner = 'root',
+  $group = 'root',
 ) {
 
   database_user { "${backupuser}@localhost":
@@ -47,7 +50,7 @@ class mariadb::backup (
 
   cron { 'mysql-backup':
     ensure  => $ensure,
-    command => '/usr/local/sbin/mysqlbackup.sh',
+    command => '/usr/local/sbin/mysqlbackup.sh >/dev/null 2>/dev/null',
     user    => 'root',
     hour    => fqdn_rand(5),
     minute  => fqdn_rand(59),
@@ -67,7 +70,7 @@ class mariadb::backup (
     ensure => 'directory',
     path   => $backupdir,
     mode   => '0700',
-    owner  => 'root',
-    group  => 'root',
+    owner  => $owner,
+    group  => $group,
   }
 }

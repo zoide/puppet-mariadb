@@ -63,7 +63,7 @@ class mariadb::server (
     package_ensure => $client_package_ensure,
     repo_version   => $repo_version,
     manage_repo    => $manage_repo,
-    mirror         => mirror,
+    mirror         => $mirror,
   }
 
   Class['mariadb::server'] -> Class['mariadb::config']
